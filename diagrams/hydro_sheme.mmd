@@ -1,0 +1,16 @@
+flowchart TB
+    classDef pipe  fill:#d6eaf8,stroke:#2874a6,stroke-width:2px,color:#000
+    classDef valve fill:#fdebd0,stroke:#b9770e,stroke-width:2px,color:#000
+    classDef split fill:#e8daef,stroke:#6c3483,stroke-width:2px,color:#000
+    classDef bed   fill:#d5f5e3,stroke:#1e8449,stroke-width:2px,color:#000
+    classDef tank  fill:#d6eaf8,stroke:#2874a6,stroke-width:3px,color:#000
+    classDef note  fill:#fef9e7,stroke:#b7950b,stroke-width:1px,stroke-dasharray: 4 3,color:#000
+
+    Tank[("Бак")]:::tank --> Pump{"Насос"}:::pipe
+    Pump --> Check["Обратный клапан"]:::valve
+    Check --> Tee(("Тройник")):::split
+
+    Tee -->|"Q/2"| VA["Клапан A"]:::valve --> PA["Труба A"]:::pipe --> BA["Грядка A"]:::bed
+    Tee -->|"Q/2"| VB["Клапан B"]:::valve --> PB["Труба B"]:::pipe --> BB["Грядка B"]:::bed
+
+    Note["⚠️ Для равенства грядок:<br/>L_A = L_B,  Ø_A = Ø_B,<br/>h_A = h_B,  клапаны одинаковые"]:::note
